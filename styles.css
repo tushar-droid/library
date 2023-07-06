@@ -38,10 +38,12 @@ body{
     grid-auto-rows: 450px;
     gap: 70px;
     justify-content: center;
-    }
+}
 
-.temp{
-    outline: chartreuse solid;
+
+.card{
+    outline: lime solid;
     height: 100%;
     width: 100%;
 }
+
