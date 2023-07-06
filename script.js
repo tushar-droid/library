@@ -17,9 +17,18 @@ let book3 = new Book('pride and Prejudice', 'Jane Austen', 320, 'read');
 let book4 = new Book('To kill a Mockingbird', 'Harper Lee', 340, 'not read');
 let book5 = new Book('Little Women', 'Louisa May Alcott', 124, 'read');
 
+let allBooks = [book1, book2, book3, book4, book5];
 
 
+displayBooks(allBooks)
 
+
+function displayBooks(allBooks){
+    allBooks.forEach(book => {
+
+    });
+
+}
 
 
 
