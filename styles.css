@@ -64,5 +64,5 @@ body{
 .add-icon{
     height: 100px;
     width: auto;
-    filter: invert(1);
+    filter:invert(1)
 }

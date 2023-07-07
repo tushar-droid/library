@@ -15,15 +15,16 @@ let book1 = new Book('Gone with the Wind ', 'Margret Mithcell', 290, 'Read');
 let book2 = new Book('Jane Eyre', 'Charlotte Bronte', 243, 'Not Read');
 let book3 = new Book('pride and Prejudice', 'Jane Austen', 320, 'Read');
 let book4 = new Book('To kill a Mockingbird', 'Harper Lee', 340, 'Not Read');
-let book5 = new Book('Little Women', 'Louisa May Alcott', 124, 'Read');
-
-
-let allBooks = [book1, book2, book3, book4, book5];
+// let book5 = new Book('Little Women', 'Louisa May Alcott', 124, 'Read');
+// let book6 = new Book('Little Women', 'Louisa May Alcott', 124, 'Read');
+// let book7 = new Book('Little Women', 'Louisa May Alcott', 124, 'Read');
+let allBooks = [book1, book2, book3, book4];
 
 
 allBooks.forEach(book => {
     DisplayBooks(book);
 });
+
 EmptyCard();
 
 function DisplayBooks(book){
@@ -50,9 +51,8 @@ function DisplayBooks(book){
 function EmptyCard(){
     const container = document.querySelector('.main-content');
     const card = document.createElement('div');
-    card.classList.add('card', 'empty');
-    const button = document.createElement('button')
-    button.type = 'button';
+    card.classList.add('card');
+    const button = document.createElement('div')
     button.innerHTML = `<img src = 'Icons/add_icon.svg' alt='addicon' class='add-icon'/>`;
     card.appendChild(button);
     container.appendChild(card);
