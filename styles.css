@@ -64,7 +64,8 @@ body{
 .add-icon{
     height: 100px;
     width: auto;
-    filter:invert(1)
+    filter:invert(1);
+    cursor: pointer;
 }
 
 form{
@@ -75,4 +76,54 @@ form{
     align-items: center;
     justify-content: space-evenly;
     padding: 20px;
+}
+
+input{
+    background-color: var(--back-color);
+    border: none;
+    font-size: 22px;
+    padding: 10px 1rem;
+    color: var(--f-color);
+}
+input::placeholder{
+    color: var(--f-color);
+}
+
+#submit-btn{
+    background-color: green;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+#submit-btn:hover{
+    background-color: rgb(1, 102, 1);
+}
+
+#cancel-btn{
+    outline: solid var(--f-color) thin;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#cancel-btn:hover{
+    background-color: var(--f-color);
+    color: var(--back-color);
+}
+
+.delete-btn, .status-btn{
+    width: 100%;
+    margin: 10px 0px;
+    font-size: 22px;
+    font-family: 'Diphylleia', serif;
+    border-radius: 10px;
+    background-color: var(--back-color);
+    color:var(--f-color);
+    border: none;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.delete-btn:hover{
+    background-color: rgb(129, 4, 4);
 }

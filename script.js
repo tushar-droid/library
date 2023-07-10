@@ -11,21 +11,26 @@ Book.prototype.info = function(){
     return (`${this.name} by ${this.author} with ${this.pages} is ${this.read_status}`);
 }
 
-let book1 = new Book('Gone with the Wind ', 'Margret Mithcell', 290, 'Read');
-let book2 = new Book('Jane Eyre', 'Charlotte Bronte', 243, 'Not Read');
-let book3 = new Book('pride and Prejudice', 'Jane Austen', 320, 'Read');
-let book4 = new Book('To kill a Mockingbird', 'Harper Lee', 340, 'Not Read');
-// let book5 = new Book('Little Women', 'Louisa May Alcott', 124, 'Read');
-// let book6 = new Book('Little Women', 'Louisa May Alcott', 124, 'Read');
-// let book7 = new Book('Little Women', 'Louisa May Alcott', 124, 'Read');
-let allBooks = [book1, book2, book3, book4];
+
+const book1 = new Book('Book1', 'author1', '123', 'Read');
+const book2 = new Book('Book2', 'author2', '233', 'Not Read');
+const book3 = new Book('Book3', 'author3', '12d3', 'Read');
+const book4 = new Book('Book4', 'author4', '122133', 'Not Read');
 
 
-allBooks.forEach(book => {
+myLibrary = [book1, book2, book3, book4];
+
+myLibrary.forEach(book => {
     DisplayBooks(book);
 });
 
+
+console.log(myLibrary.length);
 EmptyCard();
+
+
+
+
 
 function DisplayBooks(book){
     const container = document.querySelector('.main-content');
@@ -43,6 +48,16 @@ function DisplayBooks(book){
     card.appendChild(author_name);
     card.appendChild(pages);
     card.appendChild(r_status);
+    //adding the delete and read toggle button
+
+    const delete_btn = document.createElement('button');
+    delete_btn.textContent = 'Delete';
+    delete_btn.classList.add('delete-btn')
+    const status_btn = document.createElement('button');
+    status_btn.textContent = 'Toggle read Status';
+    status_btn.classList.add('status-btn');
+    card.appendChild(status_btn);
+    card.appendChild(delete_btn);
     container.appendChild(card);
 
 }
@@ -62,9 +77,6 @@ const addmore = document.querySelector('#add-card');
 addmore.addEventListener('click', AddCard);
 
 }
-
-
-
 
 function AddCard(){
     const container = document.querySelector('.empty');
@@ -86,21 +98,25 @@ function AddCard(){
     bookname.setAttribute('type', 'text');
     bookname.setAttribute('name', 'bookname');
     bookname.setAttribute('placeholder','Book Name' );
+    bookname.setAttribute('id','b-name' );
 
     //Setting the attributes for the author name
     authorname.setAttribute('type', 'text');
     authorname.setAttribute('name', 'authorname');
     authorname.setAttribute('placeholder','Author Name');
+    authorname.setAttribute('id','a-name' );
 
     //setting the attributes for the pages
     totalpages.setAttribute('type', 'text');
     totalpages.setAttribute('name', 'pages');
     totalpages.setAttribute('placeholder','total # of pages' );
+    totalpages.setAttribute('id','t-pages' );
 
     //setting the attributs for the read status
     readstatus.setAttribute('type', 'text');
     readstatus.setAttribute('name', 'readstatus');
     readstatus.setAttribute('placeholder','Read or Not Read' );
+    readstatus.setAttribute('id', 'r-status');
 
     //Setting the attributes for the submit button
     submitbtn.setAttribute('type', 'submit');
@@ -109,19 +125,16 @@ function AddCard(){
 
     //Setting the attributes for the cancel button
     cancelbtn.setAttribute('type', 'button');
-    cancelbtn.setAttribute('value', 'cancel'); 
+    cancelbtn.setAttribute('value', 'Cancel'); 
     cancelbtn.setAttribute('id', 'cancel-btn');    
 
     //This will work on sumit click
-    newForm.addEventListener('submit', function(event){
-        event.preventDefault();
-    });
+    newForm.addEventListener('submit', AddBook);
 
     cancelbtn.addEventListener('click', function(event) {
         container.remove();
         EmptyCard();
     })
-
     newForm.appendChild(bookname);
     newForm.appendChild(authorname);
     newForm.appendChild(totalpages);
@@ -129,7 +142,27 @@ function AddCard(){
     newForm.appendChild(submitbtn);
     newForm.appendChild(cancelbtn);
     container.appendChild(newForm);
-
 }
 
 
+//This function will work to add new book when submit button is clicked
+
+function AddBook(event){
+    event.preventDefault();
+    console.log("The Function is working!!");
+    const book_name_input = document.querySelector('#b-name').value;
+    const author_name_input = document.querySelector('#a-name').value;
+    const pages_input = document.querySelector('#t-pages').value;
+    const read_status_input = document.querySelector('#r-status').value;
+    console.log(book_name_input);
+    console.log(author_name_input);
+    console.log(pages_input);
+    console.log(read_status_input);
+    const newbook = new Book(book_name_input, author_name_input, pages_input, read_status_input);
+    const container = document.querySelector('.empty');
+    container.remove();
+    DisplayBooks(newbook);
+    EmptyCard();
+    myLibrary.push(newbook);
+    console.log(myLibrary);
+}
