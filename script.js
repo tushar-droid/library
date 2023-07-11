@@ -12,19 +12,6 @@ Book.prototype.info = function(){
 }
 
 
-const book1 = new Book('Book1', 'author1', '123', 'Read');
-const book2 = new Book('Book2', 'author2', '233', 'Not Read');
-const book3 = new Book('Book3', 'author3', '12d3', 'Read');
-const book4 = new Book('Book4', 'author4', '122133', 'Not Read');
-
-
-// myLibrary = [book1, book2, book3, book4];
-
-// myLibrary.forEach(book => {
-//     DisplayBooks(book);
-// });
-
-
 EmptyCard();
 
 
@@ -39,29 +26,66 @@ function DisplayBooks(book){
     const book_name= document.createElement('h2');
     const author_name = document.createElement('h4');
     const pages = document.createElement('p');
-    const r_status = document.createElement('p');   
-    book_name.textContent = book.name;
-    author_name.textContent= `:- ${book.author}`;
+    const r_status = document.createElement('h2');  
+    r_status.classList.add('read-status'); 
+    book_name.textContent = book.name.toUpperCase();
+    author_name.textContent= `:- ${book.author.toUpperCase()}`;
     pages.textContent = `Total pages: ${book.pages}`;
-    r_status.textContent = book.read_status;
+    r_status.textContent = book.read_status.toUpperCase();
     card.appendChild(book_name);
     card.appendChild(author_name);
     card.appendChild(pages);
     card.appendChild(r_status);
-    //adding the delete and read toggle button
+
+    //adding the delete button
     const delete_btn = document.createElement('button');
-    delete_btn.textContent = 'Delete';
+    delete_btn.textContent = 'DELETE';
     delete_btn.classList.add('delete-btn')
-    delete_btn.addEventListener('click', function(event){
+    delete_btn.addEventListener('click', function(){
         myLibrary.splice(card.id, 1);
         card.remove();
     });
-    const status_btn = document.createElement('button');
-    status_btn.textContent = 'Toggle read Status';
-    status_btn.classList.add('status-btn');
-    card.appendChild(status_btn);
+
     card.appendChild(delete_btn);
     container.appendChild(card);
+    if(book.read_status.toUpperCase() == 'READ'){
+        card.classList.add('green')
+        r_status.classList.add('green-btn');
+    }
+    else{
+        card.classList.add('red');
+        r_status.classList.add('red-btn');
+    }
+
+    r_status.addEventListener('click', function(){
+        let curr_status = r_status.textContent;
+        let ind = card.id;
+        console.log("id:  ", ind);
+        if(curr_status == 'READ'){
+            r_status.textContent = 'NOT READ';
+            r_status.classList.remove('green-btn');
+            r_status.classList.add('red-btn');
+            card.classList.add('red');
+            card.classList.remove('green');
+            myLibrary[ind].read_status = 'NOT READ';
+        }
+        else{
+            r_status.textContent = 'READ';
+            r_status.classList.remove('red-btn');
+            r_status.classList.add('green-btn');
+            card.classList.add('green');
+            card.classList.remove('red');
+            myLibrary[ind].read_status = 'READ';
+        }
+
+        console.log(myLibrary)
+
+    })
+
+
+
+
+
 }
 
 
@@ -151,10 +175,10 @@ function AddCard(){
 
 function AddBook(event){
     event.preventDefault();
-    const book_name_input = document.querySelector('#b-name').value;
-    const author_name_input = document.querySelector('#a-name').value;
-    const pages_input = document.querySelector('#t-pages').value;
-    const read_status_input = document.querySelector('#r-status').value;
+    const book_name_input = document.querySelector('#b-name').value.trim().toUpperCase();
+    const author_name_input = document.querySelector('#a-name').value.trim().toUpperCase();
+    const pages_input = document.querySelector('#t-pages').value.trim().toUpperCase();
+    const read_status_input = document.querySelector('#r-status').value.trim().toUpperCase();
     const newbook = new Book(book_name_input, author_name_input, pages_input, read_status_input);
     const container = document.querySelector('.empty');
     container.remove();

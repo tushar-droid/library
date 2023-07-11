@@ -127,3 +127,24 @@ input::placeholder{
 .delete-btn:hover{
     background-color: rgb(129, 4, 4);
 }
+
+.green{
+    outline: solid green;
+}   
+.red{
+    outline: solid red;
+}
+
+.read-status{
+    padding:0px 2rem 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s linear;
+}
+
+.green-btn{
+    background-color: green;
+}
+.red-btn{
+    background-color: red;
+}
