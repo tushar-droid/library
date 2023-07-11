@@ -111,10 +111,11 @@ input::placeholder{
     color: var(--back-color);
 }
 
-.delete-btn, .status-btn{
-    width: 100%;
+.delete-btn{
+    width: 50%;
     margin: 10px 0px;
     font-size: 22px;
+    font-weight: 700;
     font-family: 'Diphylleia', serif;
     border-radius: 10px;
     background-color: var(--back-color);
@@ -136,11 +137,14 @@ input::placeholder{
 }
 
 .read-status{
-    padding:0px 2rem 10px;
+    padding:0px 2rem 4px;
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.2s linear;
+    width:30%;
 }
+
+
 
 .green-btn{
     background-color: green;

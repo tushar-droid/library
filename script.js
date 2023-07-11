@@ -4,20 +4,13 @@ function Book(name, author, pages, read_status){
     this.author= author;
     this.pages= pages;
     this.read_status = read_status;
-
 }
 
 Book.prototype.info = function(){
     return (`${this.name} by ${this.author} with ${this.pages} is ${this.read_status}`);
 }
 
-
 EmptyCard();
-
-
-
-
-
 function DisplayBooks(book){
     const container = document.querySelector('.main-content');
     const card = document.createElement('div');
@@ -26,7 +19,7 @@ function DisplayBooks(book){
     const book_name= document.createElement('h2');
     const author_name = document.createElement('h4');
     const pages = document.createElement('p');
-    const r_status = document.createElement('h2');  
+    const r_status = document.createElement('h3');  
     r_status.classList.add('read-status'); 
     book_name.textContent = book.name.toUpperCase();
     author_name.textContent= `:- ${book.author.toUpperCase()}`;
@@ -125,25 +118,26 @@ function AddCard(){
     bookname.setAttribute('name', 'bookname');
     bookname.setAttribute('placeholder','Book Name' );
     bookname.setAttribute('id','b-name' );
+    bookname.required = true;
 
     //Setting the attributes for the author name
     authorname.setAttribute('type', 'text');
     authorname.setAttribute('name', 'authorname');
     authorname.setAttribute('placeholder','Author Name');
     authorname.setAttribute('id','a-name' );
-
+    authorname.required= true;
     //setting the attributes for the pages
-    totalpages.setAttribute('type', 'text');
+    totalpages.setAttribute('type', 'number');
     totalpages.setAttribute('name', 'pages');
     totalpages.setAttribute('placeholder','total # of pages' );
     totalpages.setAttribute('id','t-pages' );
-
+    totalpages.required= true;
     //setting the attributs for the read status
     readstatus.setAttribute('type', 'text');
     readstatus.setAttribute('name', 'readstatus');
     readstatus.setAttribute('placeholder','Read or Not Read' );
     readstatus.setAttribute('id', 'r-status');
-
+    readstatus.required= true;
     //Setting the attributes for the submit button
     submitbtn.setAttribute('type', 'submit');
     submitbtn.setAttribute('value', 'Submit');
