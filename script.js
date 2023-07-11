@@ -18,14 +18,13 @@ const book3 = new Book('Book3', 'author3', '12d3', 'Read');
 const book4 = new Book('Book4', 'author4', '122133', 'Not Read');
 
 
-myLibrary = [book1, book2, book3, book4];
+// myLibrary = [book1, book2, book3, book4];
 
-myLibrary.forEach(book => {
-    DisplayBooks(book);
-});
+// myLibrary.forEach(book => {
+//     DisplayBooks(book);
+// });
 
 
-console.log(myLibrary.length);
 EmptyCard();
 
 
@@ -35,7 +34,8 @@ EmptyCard();
 function DisplayBooks(book){
     const container = document.querySelector('.main-content');
     const card = document.createElement('div');
-    card.classList.add('card');
+    card.classList.add(`card`);
+    card.setAttribute(`id`,`${myLibrary.length}`);
     const book_name= document.createElement('h2');
     const author_name = document.createElement('h4');
     const pages = document.createElement('p');
@@ -49,17 +49,19 @@ function DisplayBooks(book){
     card.appendChild(pages);
     card.appendChild(r_status);
     //adding the delete and read toggle button
-
     const delete_btn = document.createElement('button');
     delete_btn.textContent = 'Delete';
     delete_btn.classList.add('delete-btn')
+    delete_btn.addEventListener('click', function(event){
+        myLibrary.splice(card.id, 1);
+        card.remove();
+    });
     const status_btn = document.createElement('button');
     status_btn.textContent = 'Toggle read Status';
     status_btn.classList.add('status-btn');
     card.appendChild(status_btn);
     card.appendChild(delete_btn);
     container.appendChild(card);
-
 }
 
 
@@ -149,20 +151,16 @@ function AddCard(){
 
 function AddBook(event){
     event.preventDefault();
-    console.log("The Function is working!!");
     const book_name_input = document.querySelector('#b-name').value;
     const author_name_input = document.querySelector('#a-name').value;
     const pages_input = document.querySelector('#t-pages').value;
     const read_status_input = document.querySelector('#r-status').value;
-    console.log(book_name_input);
-    console.log(author_name_input);
-    console.log(pages_input);
-    console.log(read_status_input);
     const newbook = new Book(book_name_input, author_name_input, pages_input, read_status_input);
     const container = document.querySelector('.empty');
     container.remove();
     DisplayBooks(newbook);
     EmptyCard();
     myLibrary.push(newbook);
-    console.log(myLibrary);
 }
+
+
